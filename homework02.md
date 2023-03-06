@@ -1,19 +1,19 @@
 1. find CDS on Chr XI, sort according to end coords, print last 10
 ```bash
-cat 1.gtf | awk '$1=="XI" && $3=="CDS" {print $1,$3,$4,$5,$10}' | sort -n -k 4 | tail
+cat 1.gtf | awk '$1=="XI" && $3=="CDS" {name=$10; gsub("\"","",name); gsub("\;","",name);print name,$1,$3,$4,$5}' | sort -n -k 4 | tail
 ```
 output: (the entire line is too long, so I only selected a few columns)
 ```
-XI CDS 631152 632798 "YKR097W";
-XI CDS 633029 635179 "YKR098C";
-XI CDS 635851 638283 "YKR099W";
-XI CDS 638904 639968 "YKR100C";
-XI CDS 640540 642501 "YKR101W";
-XI CDS 646356 649862 "YKR102W";
-XI CDS 653080 656733 "YKR103W";
-XI CDS 656836 657753 "YKR104W";
-XI CDS 658719 660464 "YKR105C";
-XI CDS 661442 663286 "YKR106W";
+YKR097W XI CDS 631152 632798
+YKR098C XI CDS 633029 635179
+YKR099W XI CDS 635851 638283
+YKR100C XI CDS 638904 639968
+YKR101W XI CDS 640540 642501
+YKR102W XI CDS 646356 649862
+YKR103W XI CDS 653080 656733
+YKR104W XI CDS 656836 657753
+YKR105C XI CDS 658719 660464
+YKR106W XI CDS 661442 663286
 ```
 
 2. list different features on Chr IV, sort according to counts
@@ -42,15 +42,15 @@ output:
 
 4. find 5 longest genes on Chr XV, print gene id and lengths
 ```bash
-cat 1.gtf | awk '$1="XV" && $3=="gene" {name=$10;gsub("\"","",name);gsub("\;","",name);print name,$5-$4+1}' | sort -n -k 2 | tail -5
+cat 1.gtf | awk '$1=="XV" && $3=="gene" {name=$10;gsub("\"","",name);gsub("\;","",name);print name,$5-$4+1}' | sort -n -k 2 | tail -5
 ```
 output:
 ```
-YDR457W 9807
-YHR099W 11235
-YKR054C 12279
-Q0045 12884
-YLR106C 14733
+YOR142W-B 5269
+YOR192C-B 5314
+YOR343W-B 5314
+YOR396W 5391
+YOL081W 9240
 ```
 
 5. count column number of 1.gtf
