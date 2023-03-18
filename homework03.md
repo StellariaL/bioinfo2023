@@ -61,7 +61,11 @@
      shuffled1                                                           13.5    3.3
      shuffled4                                                           12.3    9.2
 
-
+   ```
+   
+   Here the search only returns 3 hits because the e-value threshold is set at 10.0 (default). Only shuffled1 and shuffled4 meet this criteria.
+   
+   ```bash
    > original
    Length=70
 
@@ -75,8 +79,11 @@
    Query  61  YATRSSAVRL  70
               YATRSSAVRL
    Sbjct  61  YATRSSAVRL  70
-
-
+   ```
+   
+   This is the original sequence with 100% match.
+   
+   ```bash
    > shuffled1
    Length=70
 
@@ -86,8 +93,13 @@
    Query  18  PGTASRPSSSRSYVTTSTRTYS  39
               PG A R SSS S+V     TYS
    Sbjct  4   PG-AYRRSSSTSFVYYGMGTYS  24
-
-
+   ```
+   
+   This is the alignment with shuffled1. 'Score' is the bit score calculated from the raw score of the alignment. 'Expect' is the e-value for this sequence. In this 22 aa alignment, there are 12 perfect matches, 1 positive (Y and F, both are aromatic amino acids), and 1 gap. 
+   
+   Only an aligned segment is returned, because blast searches for local alignment. It starts with clusters of matching 'words' (3 consecutive aa), extends in both directions, and returns the extension with highest alignment score. Here, P18-S39 on the query sequence is matched to P4-S24 on shuffled1.
+   
+   ```bash
    > shuffled4
    Length=70
 
@@ -97,9 +109,11 @@
    Query  14  MFGGPGTASRPSSSRSYVTTS  34
               +F GP     P+S+    TTS
    Sbjct  52  LFPGPA----PTSASRLYTTS  68
-
-
-
+   ```
+   
+   Same as above.
+   
+   ```bash
    Lambda      K        H        a         alpha
       0.307    0.116    0.309    0.792     4.96
    Gapped
@@ -108,4 +122,14 @@
 
    Effective search space used: 27500
    ```
+   
+3. Speeding up in blast.
+
+   Apart from dynamic programming, blast also uses a **'seeding-and-extending'** approach to increase search speed.
+   
+   Blast breaks subject sequences into short 'words' consisting of several consecutive bases/aas, and records the location of each word in subject sequences in a hash table. For every query, blast breaks it down into words and search for each word in the hash table, creating a series of word hits for every subject sequence. It then identifies hit clusters, and extends these clusters in both directions using dynamic programming to find a final sequence aligned to the query sequence.
+   
+   This increases search speed because 
+   
+4. 
    
