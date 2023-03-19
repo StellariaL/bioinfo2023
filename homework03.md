@@ -139,4 +139,8 @@
    
    In sequence alignment, the symmertic PAM matrices are used as the scoring matrix, mainly because the entries in the matrices are log odds, and can be directly added along the sequence. The asymmetric mutation probability matrix is used to generate PAM matrices for different evolutionary distances. Using data from sequences of 99% similarity, a mutation probability matrix is calculated. For similarity of (100-n)%, the mutation probability would be multiplied for n times.
    
-   In other words, entries in the PAM matrices are additive, while the mutation probability matrix is multipliale. 
+   In other words, entries in the PAM matrices are additive, while the mutation probability matrix is multipliable. 
+   
+   [blastp 1]: https://github.com/StellariaL/bioinfo2023/blob/main/blastp%201.png
+   [blastp 2]: https://github.com/StellariaL/bioinfo2023/blob/main/blastp%202.png
+   [blastp 3]: https://github.com/StellariaL/bioinfo2023/blob/main/blastp%203.png
