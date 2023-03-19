@@ -135,7 +135,7 @@
 
    The asymmetric matrix is the mutation probability matrix. Entry $M_{ij}=\lambda\frac{A_{ij}}{N_j}$, where $A_{ij}$ is the count of amino acid j mutating into amino acid i (one sequence contains j, while the other sequence contains i at the corresponding place) , and $N_j$ is the count of amino acid j. The mutations are symmetric, so $A_{ij}=A_{ji}$, but since $N_j$ presumably differs from $N_i$, the matrix M is not symmetric.
    
-   The symmetric matrix is the $PAM_n$ matrix. $PAM_n(i,j)=log\frac{{M^n}_{ij}}{f(i)}$, where $f(i)$ is the occurance frequency of amino acid i. This normalizes $M_{ij}$ again according to the abundance of i, so the relationship between i and j is symmetric again, producing a symmetric matrix.
+   The symmetric matrix is the $PAM_n$ matrix. $PAM_n(i,j)=log\frac{M^n_{ij}}{f(i)}$, where $f(i)$ is the occurance frequency of amino acid i. This normalizes $M_{ij}$ again according to the abundance of i, so the relationship between i and j is symmetric again, producing a symmetric matrix.
    
    In sequence alignment, the symmertic PAM matrices are used as the scoring matrix, mainly because the entries in the matrices are log odds, and can be directly added along the sequence. The asymmetric mutation probability matrix is used to generate PAM matrices for different evolutionary distances. Using data from sequences of 99% similarity, a mutation probability matrix is calculated. For similarity of (100-n)%, the mutation probability would be multiplied for n times.
    
