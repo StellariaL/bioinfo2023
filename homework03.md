@@ -129,7 +129,11 @@
    
    Blast breaks subject sequences into short 'words' consisting of several consecutive bases/aas, and records the location of each word in subject sequences in a hash table. For every query, blast breaks it down into words and search for each word in the hash table, creating a series of word hits for every subject sequence. It then identifies hit clusters, and extends these clusters in both directions using dynamic programming to find a final sequence aligned to the query sequence.
    
-   This increases search speed because 
+   This increases search speed because the seeding process allows the algorithm to jump to areas where it is more likely to find a good alignment. Organizing subject sequences into a hash table of words also circumvents repeatedly reading the subject sequences.
    
-4. 
+4. Symmetry of PAM matrices
+
+   The asymmetric matrix is the mutation matrix. Entry $M_ij=\lambda\frac{A_{ij}}{N_j}$, where $A_{ij}$ is the count of amino acid j mutating into amino acid i (one sequence contains j, while the other sequence contains i at the corresponding place) , and $N_j$ is the count of amino acid j. The mutations are symmetric, so $A_{ij}=A_{ji}$, but since $N_j$ presumably differs from $N_i$, the matrix M is not symmetric.
+   
+   The symmetric matrix is the $PAM_n$ matrix. $PAM_n(i,j)=log\frac{M^n_{ij}}{f(i)}, where f(i) is the occurance frequency of amino acid i. This normalizes $M_{ij}$ again according to the abundance of i, so the relationship between i and j is symmetric again, producing a symmetric matrix.
    
