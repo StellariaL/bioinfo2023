@@ -63,3 +63,51 @@ The structure with minimal free energy can be found using **dynamic programming*
 
 ## Linux
 
+
+# 230323
+## NGS
+### Principles of DNA sequencing
+* gel-based systems (Sanger sequencing)
+* capillary sequencing (Sanger sequencing)
+* Illumina NGS
+  
+  1. library preparation
+     
+     fragmentation - end repair & A-tailing - ligate P5 and P7 adaptor - PCR
+     
+  2. sequencing
+
+     fragmentation - adaptors - bridge PCR - sequencing with fluorescent nt (sequencing by synthesis) **readlength: 150-300 bp**
+     
+     paired-end reads: better for mapping reads.
+     
+     adaptor: flow-cell binding site + index + primer binding site
+     
+ * 3rd generation (single molecule real-time sequencing)
+   
+   nanopore: fast but low accuracy on repeating nts.
+   
+### Applications of NGS
+* DNA-seq
+* RNA-seq
+* epigenetics
+* interactions
+
+### data analysis
+1. quality control: FastQC
+2. read mapping: Bowtie
+3. mutation identification: detect SNPs, INDELs, CNVs and SVs.
+4. visualization
+
+**Normalization is very important!**
+
+### Bowtie
+Different from BLAST: allow mismatches, multiple alignments, and must be faster.
+
+BWT algorithm: save space and time.
+
+* BW transformation: data compression method.
+  
+  rotate - sort from forward - output last -> can achieve no-loss compression
+  
+  side product: Last-First mapping
