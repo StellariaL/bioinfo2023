@@ -1,18 +1,15 @@
 1. bowtie优化速度及内存的原理
 
-  1.1 速度：
+   1.1 速度：
+   
+   * 利用BWT压缩后F列和L列中相同字母排列顺序相同的特性，同时使用checkpointing，每隔m行记录一次L列中ACGT累计数目。检索到一个match后，可以快速找到该碱基在F列中的位置，然后据此在L列上找到参考序列的下一个碱基，同query比较。
+   * 使用suffix array sample，每隔n行记录一次L列在原序列上的位置，可在检索到合法的alignment后快速推知该位点在参考序列上的位置。
 
-  * 利用BWT压缩后F列和L列中相同字母排列顺序相同的特性，同时使用checkpointing，每隔m行记录一次L列中ACGT累计数目。检索到一个match后，可以快速找到该碱基在F列中的位置，然后据此在L列上找到参考序列的下一个碱基，同query比较。
-
-  * 使用suffix array sample，每隔n行记录一次L列在原序列上的位置，可在检索到合法的alignment后快速推知该位点在参考序列上的位置。
-
-
-  1.2 内存：
-
-  * BWT压缩后F列和L列均与参考序列本身长度相同，不需要额外的空间。
+   1.2 内存：
+   
+   * BWT压缩后F列和L列均与参考序列本身长度相同，不需要额外的空间。
+   * suffix array sample可在N/n的空间内记录L列各行对应的位置，无需使用同参考序列长度相同的空间存储retrace所需的信息；checkpointing也避免了额外占用空间存储F列。
  
-  * suffix array sample可在N/n的空间内记录L列各行对应的位置，无需使用同参考序列长度相同的空间存储retrace所需的信息；checkpointing也避免了额外占用空间存储F列。
-
 2. mapping with bowtie
 
    ```bash
@@ -51,21 +48,21 @@ Output:
 
 3. sam format
 
-  3.1 CIGAR string
+   3.1 CIGAR string
 
       CIGAR string记录了query序列比对到参考序列的情况，包括匹配、插入/删除、间隔等比对状态及对应的碱基数。
-
-  3.2 soft clip的含义
+   
+   3.2 soft clip的含义
 
       soft clip表示query序列两端无法比对到参考序列上的片段，但依然作为query的一部分参与比对，并被显示在SEQ一列中。在CIGAR string中用S\*表示，其中\*是soft clip的碱基个数。
 
-  3.3 mapping quality
+   3.3 mapping quality
 
       MAPQ是sam格式的第5列，表示该条比对的质量。MAPQ的官方定义是$-10log_{10}P(比对位置错误)$，分值越高，该条比对的可信度越高。实际比对中，不同软件会采用不同方式计算MAPQ，如bowtie2会在计算时综合考虑该条alignment的得分（考虑错配数目、错配碱基测序质量、gap数量及长度）和该query其他alignment的得分。
 
       可以通过MAPQ过滤掉不可信或有多个相近alignment的比对。
 
-  3.4 反推参考序列
+   3.4 反推参考序列
 
       可以，具体方法是查询每条比对的MD tag，其中的数字表示参考序列同query相同，A/T/G/C表示错配时参考序列在该处的碱基，^后面的碱基表示参考序列中没有的碱基（query相对于参考序列有插入）。
 
