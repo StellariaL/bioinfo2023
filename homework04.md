@@ -138,3 +138,14 @@ Output:
     101 chrXV
      78 chrXVI
    ```
+5. Genome browser
+   
+   用IGV查看THA2.sam经排序后生成的bam文件。
+   
+   ![alt text][genome browser]
+   
+   截图为基因HSP150，该基因位于+链，只有1个外显子。可以看到THA2中有若干reads map到了HSP150下游，bam轨道中的灰色矩形指示map到此处的reads，其上的线条指示了reads和参考基因组有差异的碱基，而Coverage轨道中的线条则指示该处有差异的reads占比。
+   
+   例如，第一条线对应的参考序列为T（红色），而此处的4条reads中有1条测出了C（蓝色），因此bam轨道中有一个矩形上有1条蓝色短线，Coverage轨道中则有一条3/4红色，1/4蓝色的线条。
+   
+   [genome browser]: https://github.com/StellariaL/bioinfo2023/blob/main/genome%20browser.png
