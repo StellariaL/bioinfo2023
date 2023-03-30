@@ -111,3 +111,45 @@ BWT algorithm: save space and time.
   rotate - sort from forward - output last -> can achieve no-loss compression
   
   side product: Last-First mapping
+
+
+# 230330
+## NGS (continued)
+
+Paired-end sequencing: can provide information about fragment length.
+
+Mapping: allowed mismatches and multiple locations should be tailored according to specific circumstances.
+
+## Genomic features from DNA-seq
+1. assemble genomes
+   
+   c-value paradox: genome size is not correlated with organism complexity.
+   
+   GC content: 40-50\% in vertebrates, more variation in invertebrates, plants and bacteria (from 20\% to 70\%+ for bacteria). Somehow related with temperature and DNA stability?
+   
+   GC distribution: **isochores** - regions with high GC. In most cases, isochores are also gene-rich (in mammalian genome).
+   
+   genes v.s. non-coding sequences: humans have a particularly large number of transcribed, non-coding sequences.
+   * types of ncRNAs:
+   
+     canonical: r, t, sn, sno, srp
+     
+     small: mi, pi, si
+     
+     long (lncRNAs): MALAT1, HOTAIR, etc. (>1kb)
+     
+   * pseudogenes
+   * repeats and transposons
+     
+     LINE (6-8kb, contain ORFs, autonomous), SINE (100-300bp, non-autonomous), LTR (6-11kb, retrovirus-like, with *gag*, *pol* and sometimes *env*), DNA transposons.
+     
+   * regulatory elements
+   * introns
+   * UTRs: transcript=UTR+exon (no intron)
+
+2. variations
+   
+   genomic structural variation: indel
+   
+   CNV & segmental duplication
+     
