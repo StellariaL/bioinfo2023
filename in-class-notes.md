@@ -153,3 +153,61 @@ Mapping: allowed mismatches and multiple locations should be tailored according 
    
    CNV & segmental duplication
      
+# 230413
+## RNA-seq
+
+1. Expression data
+   
+   Measured quantity: (mostly) mature mRNA
+   
+   Methods:
+   1. RT-qPCR: for individual genes
+   2. array: fluorescence from probe-target hybridization
+   3. sequencing: absolute, comparable between samples
+      
+      poly(A)+ RNA-seq (default): mRNA & polyA-lncRNA *oligo-dT capture/priming*
+      
+         no strand information by default, needs dUTP
+      
+      small RNA-seq: miRNA, piRNA, etc. *needs size selection*
+      
+         add adaptors before RT, retain strand information by default
+      
+      total RNA-seq: *needs rRNA removal*
+      
+      scRNA-seq: **how to capture micro quantities of RNA?**
+      
+         SMATR-seq: add TSO to primer -> can add adaptors w/o enzymatic ligation
+                    Tn5 enzyme ->
+
+2. data analysis
+   
+   - preprocessing
+   
+   * internal control: stably expressed housekeeping genes
+   * external control: spike-in - add known amount of artificial RNA, but cannot guarantee consistancy between samples
+   * normalization for array:
+        
+        median normalization: all data minus median -> normalized median = 0
+        
+        quantile normalization: rank genes, calculate mean for each rank, assign back
+        
+   * normalization for RNA-seq: sequence depth, gene length, differential expression
+        
+        CPM/RPM: (for small RNA) reads/total reads \*10^6
+        
+        RPKM: (for poly-A/total RNA) reads/(total reads \* gene length) \*10^6
+        
+        FPKM: (for paired end) RPKM/2
+        
+        TPM: (for paired end) RPKM/total RPKM \*10^6
+        
+   * normalization for DE
+
+        edgeR: adjust counts by TMM (trimmed mean of M-values)
+        
+        DEseq2: RLE (relative log expression) - calculate geometric mean for each genes, divide by geometric mean and normalization factor (a form of median) 
+          
+   
+   statistics
+      
