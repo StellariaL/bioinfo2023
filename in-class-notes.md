@@ -249,3 +249,8 @@ Mapping: allowed mismatches and multiple locations should be tailored according 
         
         d. GSEA (gene set enrichment analysis): more sensitive than above testing methods.
       
+## RNA regulation
+
+**An example: alternative splicing detecion**
+
+psi-score: quantify how often an exon is included in the final transcript
