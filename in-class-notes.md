@@ -202,12 +202,50 @@ Mapping: allowed mismatches and multiple locations should be tailored according 
         
         TPM: (for paired end) RPKM/total RPKM \*10^6
         
-   * normalization for DE
+   * normalization for DE analysis:
 
         edgeR: adjust counts by TMM (trimmed mean of M-values)
         
         DEseq2: RLE (relative log expression) - calculate geometric mean for each genes, divide by geometric mean and normalization factor (a form of median) 
           
    
-   statistics
+   - statistics
+   
+   * descriptive statistics
+     
+     relatedness between (high-dimensional) samples: Euclidean distance
+     
+     between (high-dimensional) variables: Pearson's correlation
+     
+     Clustering algorithms:
+       
+       k-means: needs *a priori* k
+       
+        start with random assignment to k groups, calculate centroid for each group, re-assign to nearest centroid, iterate till stable.
+        
+        assessment: minimize in-group distance, maximize between-group distance
+       
+       hierarchical: complete tree
+       
+        agglomerative clustering: bottom-up, start with small groups of 2, gradually merge
+        
+        divisive: top-down
+        
+    - gene function analysis
+    
+      GO (gene ontology): functional annotation of genes - cellular component, molecular function (binding/catalytic relationships between molecules), biological process
+      
+        GO annotations are tree-like.
+        
+      KEGG: pathway annotation
+      
+      Enrichment analysis:
+      
+        a. hypergeometric test: use hypergeometric distribution to describe number of a GO term in gene list. small p indicates enrichment.
+        
+        b. Fisher-exact test
+        
+        c. chi-square test
+        
+        d. GSEA (gene set enrichment analysis): more sensitive than above testing methods.
       
