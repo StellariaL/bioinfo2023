@@ -18,10 +18,20 @@
 
    * TMM：
 
-     TMM认为两组样本中绝大多数基因的表达水平都是接近的，只有少数基因存在差异性表达，但是不考虑基因长度对reads count的影响。
+     TMM认为多组样本中绝大多数基因的表达水平都是接近的，只有少数基因存在差异性表达，但是不考虑基因长度对reads count的影响。
      
-     TMM首先在所有样本中找到一组较为居中的数据作为参考。
+     TMM首先在所有样本中找到一组较为居中的数据作为参考：计算所有样本CPM的Q3，选择Q3最接近于Q3平均值的样本作为参考组。
+     
+     接下来计算每个样本的修正因子：对于每个基因，M-value=log2(sample CPM/reference CPM)，表征了它在样本和参考组中CPM的差异，差异越大，M-value取值越极端；A=1/2(log2sample CPM + log2reference CPM)，相当于对样本和参考CPM几何均值取log2，表征了它在样本和参考组中的表达水平，表达越高，A越大；选取一组M-value和A都较为居中的基因（即：表达量居中，且样本和参考组中差异不大），作为样本的代表性基因，将它们的M-value取加权平均即为该组样本的修正因子（表达量低的基因容易表现出较大的M-value，而表达量高的基因反之，加权是为了平衡这一点）。
+     
+     最后，将raw read counts除以2^normalization factor，即可获得归一化的表达量。
+     
+   * RLE：
 
+     RLE的原理和TMM类似，也是认为绝大多数基因表达水平接近。
+     
+     计算RLE时，首先将每个基因的read counts除以该基因在多个样本中read counts的几何均值，然后在每个样本中取中位数作为修正因子，最后用read counts除以修正因子。换言之，RLE的修正因子反映了样本整体上偏离平均表达量的情况。
+     
 2. raw reads counts in different sequencing strategies:
 
    standard Illumina: E
