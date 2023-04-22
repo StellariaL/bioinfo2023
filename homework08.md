@@ -19,6 +19,8 @@
    * TMM：
 
      TMM认为两组样本中绝大多数基因的表达水平都是接近的，只有少数基因存在差异性表达，但是不考虑基因长度对reads count的影响。
+     
+     TMM首先在所有样本中找到一组较为居中的数据作为参考。
 
 2. raw reads counts in different sequencing strategies:
 
