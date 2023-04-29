@@ -13,6 +13,7 @@
      $$
      log(size \quad factor)=median(\frac{log(raw \quad counts \quad of \quad gene \quad i)}{\frac{1}{n}\sum log(raw \quad counts)})
      $$
+     
      $$
      normalized \quad expression=\frac{raw \quad counts}{size \quad factor}
      $$
