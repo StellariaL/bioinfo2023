@@ -11,9 +11,10 @@
      对每个基因，首先计算所有样本raw counts的几何均数，然后用raw counts除以几何均数，每个样本中该数值的中位数即为样本的标准化因子。对每个样本，raw counts除以标准化因子即为归一后的表达水平。
 
      $$
-     log(size\quadfactor)=median(\frac{log(raw\quadcounts\quadof\quadgene\quadi)}{\frac{1}{n}\sum log(raw\quad counts)})
-
-     normalized\quadexpression=\frac{raw\quadcounts}{size\quadfactor}
+     log(size \quad factor)=median(\frac{log(raw \quad counts \quad of \quad gene \quad i)}{\frac{1}{n}\sum log(raw \quad counts)})
+     $$
+     $$
+     normalized \quad expression=\frac{raw \quad counts}{size \quad factor}
      $$
 
      该方法认为多数基因的表达水平在样本之间应当是相同的，只是由于样本间采样、测量等随机因素产生了差异。用基因的raw counts除以几何均数，数值大小反映了该基因在该样本中偏离整体表达水平的幅度；因此，该数值的中位数就反映了整个样本偏离整体表达水平的情况。而由于真正差异性表达的基因只占很少的一部分，这种整体的偏离应当是其他干扰因素造成的，因此作为标准化因子除去。完成归一化后，样本中的多数基因表达水平都会被还原到靠近几何均数的数值，而那些依然偏离均数的基因则应当是真正的差异表达基因。
@@ -27,7 +28,7 @@
      代表性基因集的选择：选择的目的是找出一组在该样本和参考样本中表达量适中且差别不大的基因。首先，计算每个基因在样本和参考样本中的log fold change:
 
      $$
-     log\quadfold\quadchange=log_2\frac{CPM\quadin\quadref}{CPM\quadin\quadsample}
+     log \quad fold \quad change=log_2 \frac{CPM \quad in \quad ref}{CPM \quad in \quad sample}
      $$
      
      log fold change越极端，基因表达量差别越大。
@@ -35,7 +36,7 @@
      接下来计算每个基因在样本和参考样本中的平均表达量，用的是几何均值的对数：
 
      $$
-     average\quadlevel=\frac{log_2(CPM\quadin\quadref)+log_2(CPM\quadin\quadsample)}{2}
+     average \quad level= \frac{log_2 (CPM \quad in \quad ref)+log_2 (CPM \quad in \quad sample)}{2}
      $$
 
      对两个值分别排序，去除log fold change前30\%和后30\%的基因、average level前5\%和后5\%的基因，剩余的基因即为代表性基因集。
@@ -43,13 +44,13 @@
      代表性基因集的log fold change按raw counts加权求平均：
 
      $$
-     weighted\quadaverage=\frac{\sumread\quadcounts\cdotlog\quadfold\quadchange}{total\quadreads}
+     weighted \quad average= \frac{ \sum read \quad counts \cdot log \quad fold \quad change}{total \quad reads}
      $$
 
      将weighted average进一步中心化可得每个样本的标准化因子：
 
      $$
-     log_2scaling\quadfactor=weighted\quadaverage-\frac{\sumweighted \quadaverage}{n}
+     log_2 scaling \quad factor=weighted \quad average- \frac{ \sum weighted \quad average}{n}
      $$
      
      raw counts除以标准化因子即可。
