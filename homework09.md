@@ -162,11 +162,11 @@
    
 2. Fold Enrichment, p-value和FDR
    
-   Fold Enrichment=$\frac{proportion \quad in \quad sample}{proportion \quad in \quad database}=\frac{counts \quad in \quad sample}{sample \quad size} \cdot \frac{database \quad size}{counts \quad in \quad database}$
+   Fold Enrichment= $ \frac{proportion \quad in \quad sample}{proportion \quad in \quad database}=\frac{counts \quad in \quad sample}{sample \quad size} \cdot \frac{database \quad size}{counts \quad in \quad database} $ 
    
    相当于是计算了某个GO term在样本中的占比比整个数据库中高了多少倍。
    
-   p-value相当于计算随机抽样时产生当前富集结果的概率。数据库中基因总数为N，该GO term下的基因数目为K，样本包含n个基因，其中k个属于该GO term。如果完全随机地从数据库中抽取n个基因，其中属于该GO term的基因数X应服从超几何分布H(N,n,K)，即P(X=k)=$\frac{C_K^k C_{N-K}{n-k}}{C_N^n}$，这一概率即为raw p-value。
+   p-value相当于计算随机抽样时产生当前富集结果的概率。数据库中基因总数为N，该GO term下的基因数目为K，样本包含n个基因，其中k个属于该GO term。如果完全随机地从数据库中抽取n个基因，其中属于该GO term的基因数X应服从超几何分布H(N,n,K)，即P(X=k)= $ \frac{C_K^k C_{N-K}{n-k}}{C_N^n} $ ，这一概率即为raw p-value。
    
    FDR: GO analysis中，每一个样本涉及到的GO term都要经过假设检验，判断其是否显著富集，属于多重假设检验，单纯依赖p值会导致假阳性率过高，因此需要额外计算FDR来控制假阳性率。
    
