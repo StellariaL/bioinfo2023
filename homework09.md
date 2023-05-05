@@ -182,3 +182,5 @@
    
 [venn]: https://github.com/StellariaL/bioinfo2023/blob/main/DE_venn.jpg
 [top20heatmap]: https://github.com/StellariaL/bioinfo2023/blob/main/top20heatmap.jpg
+[GOanalysis]:https://github.com/StellariaL/bioinfo2023/blob/main/GOanalysis.png
+[KEGG]:https://github.com/StellariaL/bioinfo2023/blob/main/KEGG.png
