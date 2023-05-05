@@ -1,3 +1,5 @@
+### Differential expression
+
 1. multiple test correction
   
    进行假设检验时一般使用的判断标准是p值，含义是null hypothesis为真时，得到更极端结果的概率。但是当使用同一组数据同时检验多个假设时，在null hypothesis下也有可能随机地出现某个p<0.05的结果，因此需要使用更严格的判断标准来找出真正具有显著意义的结果。
@@ -145,6 +147,26 @@
    结果：
    
    ![alt text][top20heatmap]
+   
+### GO/KEGG
+
+1. GO analysis
+   
+   结果：
+   
+   ![alt text][GOanalysis]
+   
+   可以看到显著富集的terms包括类黄酮合成、对光照刺激的响应、叶绿体重定位等。
+   
+2. Fold Enrichment, p-value和FDR
+   
+   Fold Enrichment=$\frac{proportion \quad in \quad sample}{proportion \quad in \quad database}=\frac{counts \quad in \quad sample}{sample \quad size} \cdot \frac{database \quad size}{counts \quad in \quad database}$
+   
+   相当于是计算了某个GO term在样本中的占比比整个数据库中高了多少倍。
+   
+   p-value相当于计算随机抽样时产生当前富集结果的概率。数据库中基因总数为N，该GO term下的基因数目为K，样本包含n个基因，其中k个属于该GO term。如果完全随机地从数据库中抽取n个基因，其中属于该GO term的基因数X应服从超几何分布H(N,n,K)，即P(X=k)=$\frac{C_K^k C_{N-K}{n-k}}{C_N^n}$，这一概率即为raw p-value。
+   
+   FDR
    
 [venn]: https://github.com/StellariaL/bioinfo2023/blob/main/DE_venn.jpg
 [top20heatmap]: https://github.com/StellariaL/bioinfo2023/blob/main/top20heatmap.jpg
