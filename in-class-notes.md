@@ -288,3 +288,11 @@ somehow not so reliable as wet experiments.
    calculate p, E and q value.
    
 3. constructing networks
+
+## CLIP-seq: RNA-protein interaction
+
+principle: crosslink and IP RNA-binding proteins. identify consensus RNA secondary structure
+
+characteristics of RNA-protein interaction:
+* less tissue specificity than TFs. more general biological function?
+* secondary structure is somehow more important than sequence
