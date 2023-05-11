@@ -254,3 +254,37 @@ Mapping: allowed mismatches and multiple locations should be tailored according 
 **An example: alternative splicing detecion**
 
 psi-score: quantify how often an exon is included in the final transcript
+
+# 230511
+## ChIP-seq
+Interactions! The basis of networks.
+
+'Captured/targeted' sequencing: enrich and sequence selected genomic regions
+
+data produced: peaks of reads on the genome
+
+1. peak calling: bin in sliding windows. count reads, compare with random distribution and retain only significant peaks. merge and smoothen into peak.
+
+  in pair-end sequencing, the steric hinderence of the TF/protein would cause + and - end reads to form two distinct peaks. This can facilitate true peak identification.
+  
+  Control (Input) sample: sequencing w/o IP, in order to correct artifacts: some sequences may be inherently more easily amplified due to sequence/chromatin states/etc.
+  
+  for features prone to form long peaks/blocks: need bigger bins or adaptive binning.
+  
+  use heatmaps aligned by peak centers to visualize general peak shape.
+
+\* computational methods for DNA-protein interaction detection:
+* evolutional comparison for conserved sequences
+* enriched motifs
+
+somehow not so reliable as wet experiments.
+
+2. summarizing motif/consensus sequence
+
+   Position Frequency Matrix: frequency of each base at each position
+   
+   Position Weight Matrix: PFM corrected by random sequence
+   
+   calculate p, E and q value.
+   
+3. constructing networks
