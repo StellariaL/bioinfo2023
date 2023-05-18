@@ -67,6 +67,6 @@
    
    ![alt text][moremotif]
                                           
-[moremotif]: https://github.com/StellariaL/bioinfo2023/blob/main/moremotif.png
+[moremotif]: https://github.com/StellariaL/bioinfo2023/blob/main/moremotif.jpeg
 
 
