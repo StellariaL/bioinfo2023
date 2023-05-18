@@ -296,3 +296,34 @@ principle: crosslink and IP RNA-binding proteins. identify consensus RNA seconda
 characteristics of RNA-protein interaction:
 * less tissue specificity than TFs. more general biological function?
 * secondary structure is somehow more important than sequence
+
+
+# 230518
+## Machine learning
+### Basic intro
+Problems that can be tackled by machine learning: classification/regression(supervised), clustering/dimensionality reduction/association/estimation of probability distribution(unsupervised), decision making(reinforcement learning)
+
+Using ML to integrate multi-omics data: represent every sample as a multi-dimensional matrix instead of a vector of expression levels.
+
+Algorithms/models for ML:
+* Logistic regression: from continuous input to 0/1 output. $y=\frac{1}{1+e^{-z}}$, where z is a linear regression of x1-n
+* Decision tree: predict a variable based on several input. Similar to keys in taxonomy. Structure of tree is provided, thresholds are learned from data.
+* Random forest: an ensemble of trees. Every tree yields a result, the final answer is integrated from all results using a final function.
+* Neural network: Predicted label is generated from several layers of neurons. Loss function describes discrepancy between prediction and true label. Iterative algorithms and manual tinkering are used to alter the parameters in the network to minimize loss function. The capacity of the model sharply increases with the increase of layer number or data amount.
+  
+  Convolutional Neural Network(CNN): Mostly used for image processing. Compact the input data by sequentially selecting overlapping matrices and multiplying each by a parameter matrix.
+  
+  Transformer: Better performance for sequential data(natrual language, sequences, etc.). For each input vetcor, transform it into several different vectors and add a bias. Calculate an attention function based on the transformed vectors and minimize the attention function.
+  
+### Some practical problems
+* Overcoming overfitting
+  
+  Over-complicated model generates less error on training set, but may perform poorly on test set. Prevailing in models with large numbers of parameters. Can be avoided by increasing training set size.
+  
+  With limited data, smart feature extraction + simple classifier may mitigate the problem.
+
+* Evaluation of model
+
+  Cross-validation: choose a set of data as training and use the rest as test. repeat the process across all available data.
+  
+  For classification problems: confusion matrix (TP,TN,FP,FN). calculate sensitivity and specificity. draw ROC curve and look for a point that balances the two.
