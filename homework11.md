@@ -1,8 +1,15 @@
 ### 使用python实现Viterbi算法
 
-* Problem: 给定一段DNA序列，预测5'-splicing site位置
+* Problem: 给定一段DNA序列，预测exon, 5'-splicing site和intron
 * Model: HMM
-* Goal: optimal prediction
+
+  DNA序列为observed sequence, 每个碱基的类别（exon, splicing site, intron）为未知的hidden state path
+  
+  hidden state前后两项的转换规律遵循已知的transition probability
+  
+  hidden state产生observed sequence的规律遵循已知的emission probability
+  
+* Goal: optimal prediction - 找到概率最高的hidden state path
 
 代码：
 
